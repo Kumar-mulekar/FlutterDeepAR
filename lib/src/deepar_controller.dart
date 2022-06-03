@@ -23,8 +23,7 @@ class CameraDeepArController extends ValueNotifier<DeepArConfig> {
 
   static late MethodChannel _channel;
 
-  static const EventChannel _eventChannel =
-      EventChannel('plugins.flutter.io/deep_ar_camera/events');
+  static const EventChannel _eventChannel = EventChannel('plugins.flutter.io/deep_ar_camera/events');
 
   static Stream? _stream;
 
@@ -94,6 +93,10 @@ class CameraDeepArController extends ValueNotifier<DeepArConfig> {
     });
   }
 
+  Future onOfFlash() async {
+    return _channel.invokeMethod('onOfFlash');
+  }
+
   Future setDisplayMode({required DisplayMode mode}) async {
     return _channel.invokeMethod('setDisplayMode', <String, dynamic>{
       'mode': DisplayMode.values.indexOf(mode),
@@ -133,8 +136,7 @@ class CameraDeepArController extends ValueNotifier<DeepArConfig> {
     });
   }
 
-  Future changeParameterFloat(String changeParameter, String component,
-      String parameter, double floatValue) async {
+  Future changeParameterFloat(String changeParameter, String component, String parameter, double floatValue) async {
     return _channel.invokeMethod('changeParameterFloat', <String, dynamic>{
       'changeParameter': changeParameter,
       'component': component,
@@ -151,8 +153,7 @@ class CameraDeepArController extends ValueNotifier<DeepArConfig> {
   }
 
   //TODO: Implement this on both Android and IOS
-  Future changeParameterTexture(String changeParameter, String component,
-      String parameter, String texturePath) async {
+  Future changeParameterTexture(String changeParameter, String component, String parameter, String texturePath) async {
     return _channel.invokeMethod('changeParameterTexture', <String, dynamic>{
       'changeParameter': changeParameter,
       'component': component,

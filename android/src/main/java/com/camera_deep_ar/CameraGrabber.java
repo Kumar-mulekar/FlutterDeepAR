@@ -40,6 +40,8 @@ public class CameraGrabber
 
     private int screenOrientation = 0;
 
+    // private CameraManager mCameraManager;
+
     public CameraGrabber() {
     }
 
@@ -57,6 +59,12 @@ public class CameraGrabber
         if (mThread == null) {
             mThread = new CameraHandlerThread(listener, width, height, screenOrientation);
         }
+        // mCameraManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+        // try {
+        //   mCameraId = mCameraManager.getCameraIdList()[0];
+        // } catch (CameraAccessException e) {
+        //   e.printStackTrace();
+        // }
 
         synchronized (mThread) {
             mThread.openCamera();
@@ -75,6 +83,16 @@ public class CameraGrabber
             mThread.camera.stopPreview();
         }
     }
+
+    public void onOfFlash() {
+        // try {
+        //  mCameraManager.setTorchMode(mCameraId, 1);
+        // } catch (CameraAccessException e) {
+        //  e.printStackTrace();
+        // }
+    }
+
+
 
     public void changeCameraDevice(int cameraDevice) {
         currentCameraDevice = cameraDevice;
@@ -288,6 +306,7 @@ public class CameraGrabber
             params.setPictureFormat(PixelFormat.JPEG);
             params.setJpegQuality(90);
             params.setPreviewFormat(ImageFormat.NV21);
+            // params.setFlashMode("FLASH_MODE_TORCH");
 
             /*
             List<int[]> ranges = params.getSupportedPreviewFpsRange();

@@ -35,6 +35,7 @@ public class HandlePluginMethod implements MethodChannel.MethodCallHandler {
     @Override
     public void onMethodCall(@NonNull MethodCall methodCall, @NonNull MethodChannel.Result result) {
 Log.e(TAG,"onMethodCall "+methodCall.method);
+        Log.i("Cspl","Cspl");
         if ("isCameraReady".equals(methodCall.method)) {
             Map<String, Object> argument = new HashMap<>();
             argument.put("isReady",true);
@@ -141,6 +142,9 @@ Log.e(TAG,"onMethodCall "+methodCall.method);
                 handle.changeParameterTexture(changeParameter.toString(), component.toString(), parameter.toString(), pathJava);
 
             }
+        }else  if ("onOfFlash".equals(methodCall.method)) {
+            handle.onOfFlash();
+            result.success("Photo Snapped");
         }
 
 

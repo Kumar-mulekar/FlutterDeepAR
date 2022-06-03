@@ -335,6 +335,10 @@ public class HandleDeepAr {
         cameraGrabber.changeCameraDevice(cameraDevice);
     }
 
+    public void onOfFlash() {
+        cameraGrabber.onOfFlash();
+    }
+
     public void stopVideoRecording() {
         handler.post(() -> deepAR.stopVideoRecording());
     }
@@ -429,7 +433,8 @@ public class HandleDeepAr {
         handler.post(() -> {
 //             setupCamera();
 //             setupImage();
-//            if (displayMode == TAG_CAMERA) setupCamera();
+            if (displayMode == TAG_CAMERA) setupCamera();
+            Log.d(TAG, "CSPL CAm Init");
 //            if (displayMode == TAG_IMAGE) setupImage();
         });
         Log.d(TAG, "init");
