@@ -244,8 +244,9 @@ public class HandleDeepAr {
 
 
     public void dispose() {
-//        disposed = true;
-//        methodChannel.setMethodCallHandler(null);
+        // disposed = true;
+        // methodChannel.setMethodCallHandler(null);
+        cameraGrabber.releaseCamera();
         deepAR.setAREventListener(null);
         deepAR.release();
         deepAR = null;

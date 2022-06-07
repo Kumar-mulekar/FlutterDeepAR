@@ -136,6 +136,21 @@ class CameraDeepArController extends ValueNotifier<DeepArConfig> {
     });
   }
 
+  Future switchEffectFromAsset(CameraMode mode, String path) async {
+    // late File loadFile;
+    late String filePath;
+
+    if (!path.contains("none")) {
+      String fileName = path.split("/").last;
+      File loadFile = File(path);
+      filePath = loadFile.path;
+    }
+    return _channel.invokeMethod('switchEffect', <String, dynamic>{
+      'mode': describeEnum(mode),
+      'path': path.contains("none") ? "none" : filePath,
+    });
+  }
+
   Future changeParameterFloat(String changeParameter, String component, String parameter, double floatValue) async {
     return _channel.invokeMethod('changeParameterFloat', <String, dynamic>{
       'changeParameter': changeParameter,
