@@ -203,11 +203,10 @@ class CameraDeepArController extends ValueNotifier<DeepArConfig> {
       Permission.camera,
       Permission.microphone,
       Permission.storage,
-      Permission.manageExternalStorage,
       Permission.mediaLibrary,
     ].request();
   }
-
+//Permission.manageExternalStorage,
   @override
   void dispose() {
     value = value.copyWith();
